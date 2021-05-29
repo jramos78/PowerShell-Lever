@@ -16,12 +16,12 @@ function DeactivateLeverUser {
 	$uri = "https://api.lever.co/v1/users?email=" + $Email -Replace("@","%40") 
 	$result = Invoke-RestMethod -Uri $uri -Headers $headers -Method GET 
 	if(!$result){ 
-	Write-Host "The user account does not exist!" -ForeGroundColor Red;Break 
+		Write-Host "The user account does not exist!" -ForeGroundColor Red;Break 
 	} else { 
-	$json = [pscustomobject]@{} 
-	$json = $json | ConvertTo-Json 
-	$uri = "https://api.lever.co/v1/users/" + $result.data.id + "/deactivate" 
-	Invoke-RestMethod -Uri $uri -Headers $headers -Method POST -Body $json 
+		$json = [pscustomobject]@{} 
+		$json = $json | ConvertTo-Json 
+		$uri = "https://api.lever.co/v1/users/" + $result.data.id + "/deactivate" 
+		Invoke-RestMethod -Uri $uri -Headers $headers -Method POST -Body $json 
 	} 
 } 
 DeactivateLeverUser 
